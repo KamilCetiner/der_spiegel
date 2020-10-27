@@ -4,7 +4,7 @@ import {FlatList, SafeAreaView, ScrollView, Text, StyleSheet, Dimensions, View, 
 
 
 
-import {Spiegel_News} from './componenets';
+import {Spiegel_News} from '../components';
 
 
 const news_data =[
@@ -154,19 +154,79 @@ const top_menu = [
     
 ]
 
-const App = ( ) => {
+const schlagzeilen = [
+
+    {
+        id:0,
+        title: 'Wie die "neue Normalität" an den Schulen unter Druck gerät',
+
+    },
+    {
+        id:1,
+        title: 'Wie groß sind die Umfragezeichen bei Biden und Trump?',
+
+    },
+    {
+        id:2,
+        title: 'Der wütende Kandidat',
+
+    },
+    {
+        id:3,
+        title: 'Wie groß sind die Umfragezeichen bei Biden und Trump?',
+
+    },
+    {
+        id:4,
+        title: "Dann können wir sie auch gleich abschaffen",
+
+    },
+    {
+        id:5,
+        title: 'Ausland',
+
+    },
+    {
+        id:6,
+        title: 'Türkische Lira fällt auf Rekordtief',
+
+    },
+    {
+        id:7,
+        title: 'Sport',
+
+    },
+    {
+        id:8,
+        title: 'Vatikan brüskiert deutsche Laien',
+
+    },
+    {
+        id:9,
+        title: "Wir katapultieren uns in eine Superwarmzeit",
+
+    },
+  
+
+]
+
+const Startseite = (props ) => {
 
     const renderItemData = ({item}) => <Spiegel_News news={item}/>
     
     return (
-        <SafeAreaView style={{backgroundColor:'white'}}>
+        <SafeAreaView style={{backgroundColor:'white'}}>  
 
-            <View style={styles.logo_view}>
+                
 
+             <View style={styles.logo_view}>
+
+
+             
                 <View style={styles.images}>
                     <Image 
                     style={styles.menu}
-                    source={require('./img/menu.png')} 
+                    
                     /> 
 
                 </View>
@@ -175,7 +235,7 @@ const App = ( ) => {
           
                 <Image 
                 style={styles.logo} 
-                source={require ('./img/der_spiegel.jpg')}
+                
                 />
 
             </View>
@@ -184,7 +244,7 @@ const App = ( ) => {
 
                 <Image 
                 style={styles.vrt_dots}
-                source={require('./img/dots-vertical.png')} 
+                 
                 /> 
 
             </View>
@@ -205,6 +265,29 @@ const App = ( ) => {
             </View>
 
 
+            <View style={styles.container_seilen} >
+                <ScrollView  horizontal showsHorizontalScrollIndicator={false} style={styles.scroll_seilen} >
+
+                    
+                    
+                    <View style={{flexDirection:'row'}}>
+                
+                {
+                    schlagzeilen.map(value=>{
+                        return(
+                                <Text key={value.id} style={styles.seilen_menu}> {value.title}</Text>
+                        )
+
+                    })
+                }
+
+                </View>
+                
+                </ScrollView>
+            </View>
+
+
+
             
         <View>
             <FlatList
@@ -216,12 +299,16 @@ const App = ( ) => {
              />
         </View>
 
+        
+
       
 
 
     </SafeAreaView>
     )
 } 
+
+export {Startseite}
 
 
 const styles = StyleSheet.create({
@@ -269,9 +356,17 @@ const styles = StyleSheet.create({
     },
     logo: {
         height: 50
-    }
+    },
+    scroll_seilen:{
+        
+        height: Dimensions.get('window').height /7,
+        
+     },
+     seilen_menu:{
+        marginHorizontal: 50,
+        fontSize: 17
+     }
 
 
 
 })
-export default App;
